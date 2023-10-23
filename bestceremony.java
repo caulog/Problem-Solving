@@ -1,6 +1,5 @@
 import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 public class bestceremony {
     public static void main(String[] args) {
@@ -9,8 +8,8 @@ public class bestceremony {
         // get number of towers
         int n = scanner.nextInt();
 
-        // create a map for 
-        Map<Integer, Integer> heights = new HashMap<>();
+        // create a map for tower heights
+        TreeMap<Integer, Integer> heights = new TreeMap<>();
 
         // get heights: 
         // if height not added already, add to map
@@ -21,10 +20,7 @@ public class bestceremony {
             heights.put(height, heights.get(height) +1);
         }
 
-        // get max tower height
-        int max = 0;
-        for(int h: heights.keySet()){ if(h > max){ max = h; } }
-
+        int max = heights.lastKey();// get max tower height
         int best = n;               // set best equal number of towers
         if (max < n){ best = max; } // best is max height if max is smaller than total towers
         int shorter = 0;            // holds the number of towers <= the current tower
@@ -32,11 +28,8 @@ public class bestceremony {
         
         // loop through towers heights in increasing order
         for (int h : heights.keySet()) {
-            //System.out.print("h: " + h);
             shorter += heights.get(h);
-            //System.out.print(" x: " + shorter);
             charge = h + n - shorter;
-            //System.out.println(" charge: " + charge);
             if (charge < best){ best = charge; }
         }
 
