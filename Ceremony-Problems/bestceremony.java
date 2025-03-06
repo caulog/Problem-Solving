@@ -28,6 +28,7 @@ public class bestceremony {
         
         // loop through towers heights in increasing order
         for (int h : heights.keySet()) {
+            System.out.println(h);
             shorter += heights.get(h);
             charge = h + n - shorter;
             if (charge < best){ best = charge; }
